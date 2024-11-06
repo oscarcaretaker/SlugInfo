@@ -1,0 +1,49 @@
+{% extends "primary.html"%}
+{% load static %}
+
+{% block content%}
+
+<!--Nav Bar for searching -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold">Slugs of Slugterra </a>
+    <form class="d-flex" role="search" action="{% url 'search_results' %}" method="get">
+      <input class="form-control me-2" type="search" placeholder="Search Slugs" aria-label="Search" name="searched">
+      <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<!--Description and Logo Container-->
+<div class="container-lg my-3">
+   <div class="row ">
+       <div class="col-8 fw-semibold text-center">
+           Slugterra is an animated action series that takes place in a mysterious, underground world filled with caverns and creatures. This world, called Slugterra, is hidden beneath our own and inhabited by a variety of slugs, each possessing unique powers and abilities.
+           Slugs are small, cute, and colorful creatures that transform into powerful beings when fired at high speed from a blaster. Each slug type has its own unique abilities, known as "slug energy," that can be harnessed during combat.
+           The underground world of Slugterra is filled with diverse landscapes, from dark caverns to lush ecosystems.
+       </div>
+       <div class="col-4 justify-content-center">
+           <img src="https://bcdbimages.s3.amazonaws.com/other6/slugterra_1.png" alt="Logo" class="rounded float-end">
+       </div>
+   </div>
+</div>
+
+
+<!--Cards of Slug Container-->
+<div class="container my-2">
+    <div class="row justify-content-center">
+        {% for name,pic in info.items %}
+              <div class="col-md-2 col-sm-3">
+                  <div class="card mb-3 shadow-lg">
+                      <img src={{ pic }} class="card-img-top" alt="{{name}}">
+                      <div class="card-footer bg-secondary-subtle c-footer">
+                              <h5 class="text-center fw-semibold text-"><a href="{%url 'details' slug=name %}" class="text-black text-decoration-none"> {{name}} </a></h5>
+                      </div>
+                  </div>
+              </div>
+        {%endfor%}
+    </div>
+</div>
+
+
+{% endblock %}

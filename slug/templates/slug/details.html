@@ -1,0 +1,98 @@
+{% extends "primary.html"%}
+{% load static %}
+
+{% block content%}
+<!--Nav Bar -->
+<nav class="navbar bg-body-tertiary" >
+    <div class="container-fluid d-flex mb-1" >
+        <a class="navbar-brand fw-bold px-2">Slugs of Slugterra </a>
+        <!--This button loads slowly casue of scrapping.-->
+        <a href="{% url "get_protoform_image" %}" type="button" class="btn btn-outline-secondary">Back</a>
+    </div>
+</nav>
+
+<!--- Cointainer for Name and description-->
+<div class="container-lg my-3">
+    <p class="fs-1 fw-bold text-center">{{slug}}</p>
+    <p class="lh-base fw-medium">{{data.description}}
+        {%if data.analysis%}
+            {{data.analysis}}
+        {%else%}
+          <p></p>
+        {%endif%}
+    </p>
+</div>
+
+<!--Container of cards-->
+
+
+
+<div class="container-lg my-3">
+   <div class="card-group d-flex align-items-baseline shadow-lg" style="background-color: white" >
+
+       {%if data.meguno%}
+        <div class="card fixed-height">
+            <img src="{{data.protoform}}" class="card-img-top" alt="Protoform">
+            <div class="card-footer bg-secondary-subtle d-flex justify-content-center align-items-center">
+                <h5 class="text-center fw-semibold "> Protoform </h5>
+            </div>
+        </div>
+
+        <div class="card fixed-height">
+            <img src="{{data.morph}}" class="card-img-top " alt="Velocimorph">
+            <div class="card-footer bg-secondary-subtle d-flex justify-content-center align-items-center">
+                <h5 class="text-center fw-semibold "> Velocimorph </h5>
+            </div>
+        </div>
+
+       {%else%}
+
+        <div class="card">
+            <img src="{{data.protoform}}" class="card-img-top" alt="Protoform">
+            <div class="card-footer bg-secondary-subtle d-flex justify-content-center align-items-center">
+                <h5 class="text-center fw-semibold "> Protoform </h5>
+            </div>
+        </div>
+
+        <div class="card" style="background-color: white">
+            <img src="{{data.morph}}" class="card-img-top" alt="Velocimorph">
+            <div class="card-footer bg-secondary-subtle d-flex justify-content-center align-items-center">
+                <h5 class="text-center fw-semibold "> Velocimorph </h5>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{data.megamorph}}" class="card-img-top" alt="Megamorph">
+            <div class="card-footer bg-secondary-subtle d-flex justify-content-center align-items-center">
+                <h5 class="text-center fw-semibold "> Megamorph </h5>
+            </div>
+        </div>
+       {%endif%}
+    </div>
+
+</div>
+
+<!--Attacks of slugs and Fusion shots-->
+<div class="container-lg ">
+    <p class="fs-4 fw-semibold text-decoration-underline">Attacks</p>
+    <p class="lh-base fw-medium">
+
+        {{data.attacks}}
+
+    </p>
+      {% if data.shots %}
+    <p class="fs-4 fw-semibold text-decoration-underline">Fusion Shot</p>
+    <p class="lh-base fw-medium">
+
+          {{data.shots }}
+
+      {%endif%}
+    </p>
+
+</div>
+
+<div class="container-lg my-4 text-center font-monospace " style="font-size: 10px">
+    Data and information sourced from Fandom. All rights reserved to their respective authors and contributors
+</div>
+
+{% endblock %}
